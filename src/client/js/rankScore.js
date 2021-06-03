@@ -1,4 +1,4 @@
-// rank sentiment based on score
+// Sentiments
 const rankScore = (score) => {
     switch(score) {
       case 'P+':

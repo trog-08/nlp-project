@@ -2,11 +2,12 @@ function handleSubmit(event) {
     const inputText = document.getElementById('name').value;
     event.preventDefault()
     console.log("::: Form Submitted :::")
-    //check what text was put into the form field
+    
+    //update the form
     if(Client.checkForName(inputText)) {
       document.getElementById('coming').classList.remove('hide')
       document.getElementById('data-list').classList.add('hide')
-      // Fetch request
+
       fetch('http://localhost:8081/getSentiment',{
         method: 'POST',
         cache: "no-cache",
@@ -17,10 +18,13 @@ function handleSubmit(event) {
         },
         body:JSON.stringify({inputText}),
       })
+
       .then (res => {
         console.log(res)
         return res.json()
       })
+
+      // Update the ui with the response
       .then (function (response) {
           console.log("Updating UI")
           document.getElementById('coming').classList.add('hide')
