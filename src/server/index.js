@@ -28,8 +28,8 @@ console.log(__dirname)
 
 // API URL variables
 let baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key=';
-//let apiKey = process.env.API_KEY;
-let apiKey = "41b1a41de403c6c18e461eb7fb8b4e26";
+const apiKey = process.env.API_KEY;
+//let apiKey = "41b1a41de403c6c18e461eb7fb8b4e26";
 
 // get route
 app.get('/', function (req, res) {

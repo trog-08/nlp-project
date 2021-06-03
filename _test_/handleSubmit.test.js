@@ -1,7 +1,7 @@
 import {handleSubmit} from '../src/client/js/formHandler';
 
-describe("Testing the submit functionality", ()=>{
-    test("Testing the handleSubmit() function",()=>{
+describe("Test submit", ()=>{
+    test("Test handleSubmit()",()=>{
         expect(handleSubmit).toBeDefined();
     })
 })
