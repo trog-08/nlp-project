@@ -27,6 +27,7 @@ const fetch = require('node-fetch')
 console.log(__dirname)
 
 // API URL variables
+// API URL variables
 let baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key=';
 let apiKey = process.env.API_KEY;
 
