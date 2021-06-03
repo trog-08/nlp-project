@@ -31,7 +31,7 @@ const apiKey = process.env.API_KEY;
 
 // get route
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
+  res.sendFile(path.resolve('dist/index.html'))
 })
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
