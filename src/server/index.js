@@ -27,9 +27,9 @@ const fetch = require('node-fetch')
 console.log(__dirname)
 
 // API URL variables
-// API URL variables
 let baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key=';
-let apiKey = process.env.API_KEY;
+//let apiKey = process.env.API_KEY;
+let apiKey = "41b1a41de403c6c18e461eb7fb8b4e26";
 
 // get route
 app.get('/', function (req, res) {
@@ -48,7 +48,7 @@ app.get('/all', function (req, res) {
 })
 
 //POST request
-/* app.post('/getSentiment', async(req, res) => {
+app.post('/getSentiment', async(req, res) => {
   console.log(req.body.inputText)
   const apiData = await fetch(baseURL + apiKey + '&of=json&url=' + req.body.inputText + '&lang=en', {
     method: 'POST'
@@ -62,19 +62,4 @@ app.get('/all', function (req, res) {
   catch (err) {
     console.log("error", err)
   }
-});*/
-
-app.post('/getSentiment', async(req, res) => {
-  console.log(req.body.inputText)
-const urlToAPI = "https://api.meaningcloud.com/sentiment-2.1?key=" + process.env.API_KEY + "&url=" + req.body.inputText + "&lang=en"
-
-const result = await fetch("https://api.meaningcloud.com/sentiment-2.1?key=" + process.env.API_KEY + "&url=" + req.body.inputText + "&lang=en")
-    try {
-        console.log(result)
-        const response = await result.json();
-        res.send(response)
-        console.log(response)
-    } catch (error) {
-        console.log("error occured ===> ", error);
-    }
-  });
+});
