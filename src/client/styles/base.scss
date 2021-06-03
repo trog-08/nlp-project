@@ -1,0 +1,69 @@
+body {
+    background-color: #5cdb95;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 2;
+}
+
+section {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+//Fonts
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&family=Shadows+Into+Light&display=swap);
+
+$font-main: 'Shadows Into Light', sans-serif;
+$font-head: 'Montserrat';
+$colour-blue: #05386B;
+$colour-cream: #EDF5E1;
+
+body {
+    font: 25px/1.2 $font-main;
+    font-weight: 300;
+    color: $colour-blue;
+  }
+
+  h1 {
+    font: 50px/1.5 $font-head;
+    font-weight: 700;
+    color: $colour-cream;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  h2 {
+    font: 30px/1.2 $font-head;
+    font-weight: 600;
+    color: $colour-cream;
+    margin-top: 30px;
+  }
+
+  section.results {
+    ul {
+      margin-top: 20px;
+    }
+    li {
+    
+      font-size: 20px;
+      margin-top: 15px;
+    }
+  }
+
+  section.results {
+    ul {
+      margin-top: 15px;
+    }
+    li {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
+
+  .hide {
+    display: none;
+  }
