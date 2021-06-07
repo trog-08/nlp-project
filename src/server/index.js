@@ -1,58 +1,46 @@
-// dotenv for private API key
-const dotenv = require('dotenv');
-dotenv.config();
-
-//Global variables
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const fetch = require('node-fetch')
-
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
-
-// express
+let projectData = {};
+// Express to run server and routes
+const express = require('express');
+// Start up an instance of app
 const app = express();
+/* Dependencies */
+const bodyParser = require('body-parser');
+/* Middleware*/
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+// Cors for cross origin allowance
+const cors = require('cors');
+app.use(cors());
+// Initialize the main project folder
 app.use(express.static('dist'));
 
-// bodyParser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const port = 8080;
+// Spin up the server
+const server = app.listen(port, listening);
 
-// cors
-app.use(cors());
+// Callback to debug
+function listening() {
+    console.log("server running");
+    console.log(`server is running on localhost: ${port}`);
+}
 
-console.log(__dirname)
-
-// API variables
-let baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key=';
-const apiKey = process.env.API_KEY;
-
-// get route
-app.get('/', function (req, res) {
-  res.sendFile(path.resolve('dist/index.html'))
-})
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
-})
-app.get('/all', function (req, res) {
-    res.send(mockAPIResponse)
-})
-
-//POST request
-app.post('/getSentiment', async(req, res) => {
-  console.log(req.body.inputText)
-  const apiData = await fetch(baseURL + apiKey + '&of=json&url=' + req.body.inputText + '&lang=en', {
-    method: 'POST'
-  });
-  try {
-    const data = await apiData.json()
-    console.log(apiData)
-    console.log("::: apiData :::", data)
-    res.send(data);
-  }
-  catch (err) {
-    console.log("error", err)
-  }
+//GET route
+app.get('/all', function(req, res) {
+    res.send(projectData);
 });
+
+// Post Route
+app.post('/addWeatherInfo', addInfo);
+
+function addInfo(req, res){
+    console.log(req.body);
+    newEntry =
+    projectData.temp = req.body.temp;
+    projectData.date = req.body.date;
+    projectData.feelings = req.body.feelings;
+    res.end();
+    console.log(projectdata)
+}
