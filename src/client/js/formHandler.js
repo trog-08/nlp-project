@@ -1,10 +1,6 @@
 /* Global Variables */
-let baseUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-let apiKey = '&appid=3a2e63b1d19a0289c4f51a34ef52439e';
-const date = document.getElementById('date');
-const temp = document.getElementById('temp');
-const content = document.getElementById('content');
-const feelings = document.getElementById('feelings').value;
+let baseUrl = 'http://api.geonames.org/searchJSON?q=';
+let userName = 'trog_08';
 
 //POST function that sends data to the server.js file
 const postData = async (url = '', data = {}) => {
@@ -26,43 +22,31 @@ const postData = async (url = '', data = {}) => {
     }
 };
 
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
-//Adding the event listener
 document.getElementById('generate').addEventListener('click', performAction);
-//Event listener function that updates the UI when the burron is clicked
-function performAction(event){
-    
-    let zip = document.getElementById('zip').value;
-    let feelings = document.getElementById('feelings').value
-    getWeatherData(baseUrl, zip, apiKey)
+function handleSubmit(event) {
+    let city = document.getElementById('city').value;
+    getGeonames(baseUrl, city, userName)
     .then(function(data) {
         console.log(data)
-        postData('http://localhost:8080/addWeatherInfo', {
+        postData('http://localhost:9090/addTravelInfo', {
             date: newDate,
-            temp: data.main.temp,
-            feelings: feelings
+            temp: data.main.temp
         })
         .then(updateInterface())
     });
 }
-//async function that updates the UI and then feeds it to the event listener
-const updateInterface = async () => {
-    const req = await fetch ('http://localhost:8080/all');
-    try{
-        const allData = await req.json();
-        console.log(allData);
-        document.getElementById('content').innerHTML = `Aww, dont feel: ${allData.feelings}`;
-        document.getElementById('date').innerHTML = `date: ${allData.date}`;
-        document.getElementById('temp').innerHTML = `${allData.temp} C`;
-    } catch(error) {
-        console.log('error', error);
-    }
-}
+    
+//Adding the event listener
+
+//Event listener function that updates the UI when the burron is clicked
+
+    
+    
+    
+
 //Creates the URL
-const getWeatherData = async (baseUrl, zip, apiKey) => {
-    const res = await fetch(baseUrl+zip+apiKey+'&units=metric');
+const getGeonames = async (baseUrl, city, userName) => {
+    const res = await fetch(baseUrl + city + '&maxRows=10&username=' + userName);
     try {
         const data = await res.json();
         console.log(data)
@@ -71,3 +55,5 @@ const getWeatherData = async (baseUrl, zip, apiKey) => {
         console.log('error', error);
     }
 };
+
+export { handleSubmit }
