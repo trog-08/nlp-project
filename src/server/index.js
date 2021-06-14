@@ -1,46 +1,58 @@
-// Setup empty JS object to act as endpoint for all routes
-let projectData = {};
-// Express to run server and routes
-const express = require('express');
-// Start up an instance of app
+// Empty object for endpoint data
+let projectData = [];
+
+// Require the things
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+// Use the things
 const app = express();
-/* Dependencies */
-const bodyParser = require('body-parser');
-/* Middleware*/
-
-//Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-// Cors for cross origin allowance
-const cors = require('cors');
 app.use(cors());
-// Initialize the main project folder
-app.use(express.static('dist'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("dist"));
 
-const port = 9090;
-// Spin up the server
-const server = app.listen(port, listening);
-
-// Callback to debug
-function listening() {
-    console.log("server running");
-    console.log(`server is running on localhost: ${port}`);
-}
-
-//GET route
-app.get('/all', function(req, res) {
-    res.send(projectData);
+// Spin up the Server
+const port = 8081;
+const server = app.listen(port, () => {
+  console.log(`running on port: ${port}`);
 });
 
-// Post Route
-app.post('/addWeatherInfo', addInfo);
+// Get
+app.get("/data", (req, res) => {
+  res.send(projectData);
+});
 
-function addInfo(req, res){
-    console.log(req.body);
-    newEntry =
-    projectData.temp = req.body.temp;
-    projectData.date = req.body.date;
-    projectData.feelings = req.body.feelings;
-    res.end();
-    console.log(projectdata)
-}
+// POST - Geonames
+app.post("/geonames", (req, res) => {
+  geonamesData = {
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
+  };
+  projectData.push(geonamesData);
+  res.send(projectData);
+});
+
+// POST Weatherbit
+app.post("/weatherbit", (req, res) => {
+  weatherBitData = {
+    high: req.body.high,
+    low: req.body.low,
+    description: req.body.description,
+  };
+  projectData.push(weatherBitData);
+  res.send(projectData);
+});
+
+// POST Pixabay
+app.post("/pixabay", (req, res) => {
+  pixabayData = {
+    image: req.body.image,
+  };
+  projectData.push(pixabayData);
+  res.send(projectData);
+});
+
+// export
+module.exports = server;

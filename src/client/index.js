@@ -1,22 +1,19 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
-//import { updateUi } from './js/updateUi'
-
-
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
-
-
-console.log(checkForName);
-
-//alert("I EXIST")
-//console.log("CHANGE!!");
-
-export {
- checkForName,
- handleSubmit
- //updateUi,
-}
+import {
+    getGeonames,
+    getWeatherBit,
+    getPixabay,
+    performAction,
+    uiUpdate,
+    postData,
+  } from "./js/app.js";
+  
+  import "./styles/styles.scss";
+  
+  export {
+    performAction,
+    uiUpdate,
+    postData,
+    getGeonames,
+    getWeatherBit,
+    getPixabay,
+  };

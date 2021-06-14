@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Travel App</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="base.scss">
-</head>
- <body>
-<div id = "app">
-  <div class ="holder headline">
-    Travel App
-  </div>
-  <div class ="holder city">
-    <label for="city">Enter your destination here</label>
-    <input type="text" id="city" placeholder="Enter destination code here">
-  </div>
-  <div class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-   <div id = "temp"></div>
-   <div id = "content"></div>
-  </div>
-  </div>
-  </div>
-<script src="app.js" type="text/javascript"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Travel App</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="headline">
+     Should I bring an umbrella on this trip?
+    </div>
+    <section id="userInput">
+      <div id="app">
+        <div class="city">
+          <label for="city">Where are you going?</label>
+          <input type="text" id="city" placeholder="Enter City Here" />
+        </div>
+        <div class="dateGoing">
+          <label for="date">When are you going?</label>
+          <input type="date" class="datePicker" />
+        </div>
+        <div class="dateOfReturn">
+          <label for="date">When are you coming back?</label>
+          <input type="date" class="datePicker" />
+        </div>
 
-</body>
+        <button id="generate" type="submit">Submit</button>
+      </div>
+    </section>
+    <div class="output">
+      <h3>Trip length</h3>
+      <div id="details"></div>
+      <h3>Weather forecast</h3>
+      <div id="content"></div>
+      <img id="image" />
+    </div>
+    <!-- <script>
+      // Check that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script> -->
+  </body>
 </html>
