@@ -41,20 +41,21 @@ const getGeonames = async (city) => {
 const performAction = async () => {
   let city = document.getElementById("city").value;
   let dateGoing = document.getElementsByClassName("datePicker")[0].value;
-  let dateOfReturn = document.getElementsByClassName("datePicker")[1].value;
+  let dateReturning = document.getElementsByClassName("datePicker")[1].value;
 
   //Dates
+  //Function to determin the dates leaving and returning
   let d = new Date();
-  const daysTillDepart = Math.floor(
+  const daysToGo = Math.floor(
     (new Date(dateGoing).getTime() - d.getTime()) / (1000 * 3600 * 24)
   );
-  const lengthOfTrip = Math.ceil(
-    (new Date(dateOfReturn).getTime() - new Date(dateGoing).getTime()) /
+  const tripLength = Math.ceil(
+    (new Date(dateReturning).getTime() - new Date(dateGoing).getTime()) /
       (1000 * 3600 * 24)
   );
   document.getElementById(
     "details"
-  ).innerHTML = `You'll be leaving in:<br>${daysTillDepart} days <br> and home:<br> ${lengthOfTrip} days later`;
+  ).innerHTML = `You'll be leaving in:<br>${daysToGo} days <br> and your trip will be:<br> ${tripLength} days`;
 
   // Bundle the API information
   getGeonames(city)
@@ -84,7 +85,7 @@ const performAction = async () => {
     })
     .then((data) => {
       return postData("http://localhost:8081/pixabay", {
-        image: data.hits[0].webformatURL,
+        image: data.hits[1].webformatURL,
       }).then(uiUpdate());
     });
 };
