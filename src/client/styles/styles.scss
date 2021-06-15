@@ -59,9 +59,10 @@ footer {
 }
 
 /* Resize images */
-.container img {
+.image-div > image {
+  object-fit: cover;
   width: 100%;
-  height: auto;
+  max-height: 100%;
 }
 
 .panel-content {
